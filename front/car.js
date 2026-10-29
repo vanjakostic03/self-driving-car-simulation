@@ -42,7 +42,6 @@ class Car{
             this.speed=0;
         }
 
-        this.y-=this.speed;
 
         // if(this.controls.left && (this.controls.forward || this.controls.reverse )){
         //     this.x-=2;
@@ -58,18 +57,26 @@ class Car{
             this.angle-=0.03;
         }
 
+        this.x-=Math.sin(this.angle)*this.speed;        //moving in direction
+        this.y-=Math.cos(this.angle)*this.speed;
+
 
     }
 
 
     draw(ctx){
+        ctx.save();
+        ctx.translate(this.x,this.y);
+        ctx.rotate(-this.angle);
+        
         ctx.beginPath();
         ctx.rect(
-            this.x-this.w/2,
-            this.y-this.h/2,
+            -this.w/2,          //already translated
+            -this.h/2,
             this.w,
             this.h
         );
         ctx.fill();
+        ctx.restore();          //less chaos
     }
 }
