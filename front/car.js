@@ -50,11 +50,17 @@ class Car{
         //     this.x+=2;
         // }
 
-        if (this.controls.left){
+        if (this.controls.left && this.controls.forward ){
             this.angle+=0.03;
         }
-        if(this.controls.right){
+        if(this.controls.right && this.controls.forward){
             this.angle-=0.03;
+        }
+        if (this.controls.left && this.controls.reverse ){
+            this.angle-=0.03;
+        }
+        if(this.controls.right && this.controls.reverse){
+            this.angle+=0.03;
         }
 
         this.x-=Math.sin(this.angle)*this.speed;        //moving in direction
